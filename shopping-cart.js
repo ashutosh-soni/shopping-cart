@@ -20,7 +20,7 @@ class Cart {
        */
     addItem(itemId, quntity){
         if (itemId in this.items){
-            this.items.itemId.quntity += quntity;
+            this.items[itemId].quntity += quntity;
             return true;
         }else if (itemId in productList){
             var itemInfo = productList[itemId];

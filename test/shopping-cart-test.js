@@ -3,7 +3,7 @@ var expect = chai.expect;
 var cart = require("../shopping-cart.js");
 var productList = require("../products.js");
 
-describe("Step 1: Add products to the shopping cart.", ()=>{
+describe("Step 2: Add additional products of the same type to the shopping cart.", ()=>{
     var shoppingCart = new cart.Cart();
     describe("Given", () =>{
         it("An Empty shopping cart.", () =>{
@@ -18,15 +18,19 @@ describe("Step 1: Add products to the shopping cart.", ()=>{
             var result = shoppingCart.addItem("doveSoap", 5);
             expect(result).to.equal(true);
         });
+        it("And then adds another 3 Dove Soaps to the shopping cart", () =>{
+            var result = shoppingCart.addItem("doveSoap", 3);
+            expect(result).to.equal(true);
+        });
     });
 
     describe("Then", () =>{
-        it("The shopping cart should contain 5 Dove Soaps each with a unit price of 39.99", () =>{
-            expect(shoppingCart.getTotalItemsById("doveSoap")).to.equal(5);
+        it("The shopping cart should contain 8 Dove Soaps each with a unit price of 39.99", () =>{
+            expect(shoppingCart.getTotalItemsById("doveSoap")).to.equal(8);
         });
 
-        it("And the shopping cart’s total price should equal 199.95", () =>{
-            expect(shoppingCart.getCartTotal()).to.equal(199.95);
+        it("And the shopping cart’s total price should equal 319.92", () =>{
+            expect(shoppingCart.getCartTotal()).to.equal(319.92);
         });
     });
 
