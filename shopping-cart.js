@@ -1,4 +1,5 @@
 var productList = require("./products.js");
+var taxList = reduce("./tax-list.js");
 
 class Cart {
     constructor(){
@@ -46,7 +47,7 @@ class Cart {
        getTotalitemsbyId: This function retrun total number of quntity for
        given itemId in cart.
        *itemId*: String
-    */
+       */
     getTotalItemsById(itemId){
         return this.items[itemId].quntity;
     }
@@ -54,7 +55,7 @@ class Cart {
     /**
        getCartTotal: This function return grandTotal of price of cart without
        including service tax.
-       */
+    */
     getCartTotal(){
         var itemList =  Object.entries(this.items);
         var result = itemList.reduce((total, itemInfo)=>{
@@ -63,6 +64,15 @@ class Cart {
         },0);
 
         return parseFloat(result.toFixed(2));
+    }
+
+    getTotalSalesTax(){
+        var cartTotal = this.getCartTotal();
+        var salesTax = taxList["salesTax"];
+        var calculatedTax = (cartTotal/ 100) * salesTax;
+        console.log(calculatedTax);
+        return calculatedTax;
+
     }
 
 };
