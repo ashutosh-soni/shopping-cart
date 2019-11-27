@@ -1,4 +1,6 @@
 var productList = require("./products.js");
+var taxList = require("./tax-list.js");
+
 
 class Cart {
     constructor(){
@@ -63,6 +65,20 @@ class Cart {
         },0);
 
         return parseFloat(result.toFixed(2));
+    }
+
+    // getTotalsalestax: This function calculate the total sales tax on cart.
+    getTotalSalesTax(){
+        var cartTotal = this.getCartTotal();
+        var salesTax = taxList.salesTax;
+        var calculatedTax = Math.round((salesTax/100) * cartTotal);
+        return parseFloat(calculatedTax.toFixed(2));
+    }
+
+    // getBil: This function return the total amount including sales tax.
+    getBill(){
+        var grandTotal = this.getCartTotal() + this.getTotalSalesTax();
+        return grandTotal;
     }
 
 };
